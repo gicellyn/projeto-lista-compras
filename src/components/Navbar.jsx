@@ -7,7 +7,7 @@ function Menu() {
             <Navbar bg="light" variant="light" expand="md">
         <Container fluid>
           <Link to="/">
-            <img src="/logo.lista.png" width="32" alt="Logo" />
+            <img src="/logo-lista.png" width="150" alt="Logo" />
           </Link>
         </Container>
         <Container>
