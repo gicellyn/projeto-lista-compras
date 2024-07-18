@@ -29,7 +29,7 @@ function Cadastro() {
     return (
         <main>
            <form className="form-section" onSubmit={handleSubmit}>
-                <h1>Cadastro</h1>
+                <h1 className="text-center">Cadastro</h1>
                 <hr />
                 <div>
                     <label htmlFor="nome">Nome</label>
@@ -46,7 +46,7 @@ function Cadastro() {
                     <input type="password" id="senha" className="form-control" {...register("senha", {required:true, minLength:6})}/>
                     {errors.senha && <small className="invalid">Senha inválida!</small>}
                 </div>
-                <Button variant="dark" className="mt-1 w-100" type="submit">Cadastrar</Button>
+                <Button variant="warning" className="mt-1 w-100" type="submit">Cadastrar</Button>
                 <Button variant="danger" className="mt-1 w-100" type="button">Entrar com Google</Button>
             </form>
         </main>
