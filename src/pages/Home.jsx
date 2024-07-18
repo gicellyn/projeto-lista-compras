@@ -22,9 +22,13 @@ function Home() {
 
   return (
     <main className="mt-3" style={{ paddingTop: "16px", paddingBottom: "56px" }}>
+        <div className="container-fluid p-0">
         <img src="/public/banner-listaexpress.png" className="img-fluid" alt="Banner Lista Express" />
+        </div>
       <Container>
-        <h1>Suas Listas de Compras</h1>
+        <h1>HOME</h1>
+        <hr />
+        <h3>Suas Listas de Compras</h3>
         <hr />
         <Link className="btn btn-dark" to="/listas/adicionar">
           Adicionar Lista
