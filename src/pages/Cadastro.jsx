@@ -2,7 +2,7 @@ import { Button } from "bootstrap";
 import { useForm } from "react-hook-form";
 
 function Cadastro() {
-    const [register, handleSubmit, formState: { erros }] = useForm();
+    const [register, handleSubmit,  formState:{errors}] = useForm();
 
     return (
         <main>
@@ -24,8 +24,8 @@ function Cadastro() {
                     <input type="password" id="senha" className="form-control" {...register("senha", {required:true, minLength:6})}/>
                     {errors.senha && <small className="invalid">Senha inválida!</small>}
                 </div>
-                <Button></Button>
-                <Button></Button>
+                <Button variant="outline-light" className="mt-1 w-100" type="submit">Cadastrar</Button>
+                <Button>Entrar com o Google</Button>
             </form>
         </main>
     )
