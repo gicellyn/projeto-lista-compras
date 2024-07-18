@@ -3,10 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-// import NotFound from "./pages/NotFound";
-
-// BrowserRouter: componente essencial para conduzir o roteamento no navegador.
-// Route: indicamos a rota (path) e o elemento que será exibido na tela.
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -17,10 +14,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      
     </>
   );
 }
