@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import Ajuda from "./pages/Ajuda";
+import Listas Salvas from "./pages/ListasSalvas";
 import NotFound from "./pages/NotFound";
 import NovaTarefa from "./pages/NovaTarefa";
 
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/ajuda" element={<Ajuda />} />
+          <Route path="/listassalvas" element={<ListasSalvas />} />
           <Route path="/novatarefa" element={<NovaTarefa />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
