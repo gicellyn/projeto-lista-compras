@@ -1,7 +1,7 @@
 function Home() {
     return(
-        <main>
-            <h1>Home</h1>
+        <main className="container-fluid p-0">            
+        <img src="/public/banner-listaexpress.png" className="img-fluid" alt="Banner Lista Express" />
         </main>
     )
 }

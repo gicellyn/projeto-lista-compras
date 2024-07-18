@@ -5,7 +5,6 @@ import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import ListasSalvas from "./pages/ListasSalvas";
 import NotFound from "./pages/NotFound";
-import NovaTarefa from "./pages/NovaTarefa";
 
 // BrowserRouter: componente essencial para conduzir o roteamento no navegador.
 // Route: indicamos a rota (path) e o elemento que será exibido na tela.
@@ -20,7 +19,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/listassalvas" element={<ListasSalvas />} />
-          <Route path="/novatarefa" element={<NovaTarefa />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
