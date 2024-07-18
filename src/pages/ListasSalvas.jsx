@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // SavedLists.js
 import React, { useEffect, useState } from 'react';
 import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
@@ -65,3 +66,10 @@ const SavedLists = () => {
 };
 
 export default SavedLists;
+=======
+function ListasSalvas() {
+    
+}
+
+export default ListasSalvas;
+>>>>>>> 3a5d5a3a47ac3ef2a559f2da3342f95943cfeb33
