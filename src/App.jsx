@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import Listas Salvas from "./pages/ListasSalvas";
+import ListasSalvas from "./pages/ListasSalvas";
 import NotFound from "./pages/NotFound";
 import NovaTarefa from "./pages/NovaTarefa";
 
