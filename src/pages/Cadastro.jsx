@@ -1,4 +1,3 @@
-
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 // import { cadastrarUsuario, entrarGoogle } from "../firebase/auth";
