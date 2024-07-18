@@ -2,7 +2,7 @@ import { Button } from "bootstrap";
 import { useForm } from "react-hook-form";
 
 function Cadastro() {
-    const [register, handleSubmit,  formState:{errors}] = useForm();
+    const [register, handleSubmit] = useForm();
 
     return (
         <main>
