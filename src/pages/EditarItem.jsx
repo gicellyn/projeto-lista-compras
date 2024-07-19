@@ -1,17 +1,42 @@
 import { useForm } from "react-hook-form";
-import { updateItem } from "../firebase/itens";
-import { useParams } from "react-router-dom";
+import { getItem, updateItem } from "../firebase/itens";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useContext, useEffect } from "react";
+import { UsuarioContext } from "../contexts/UsuarioContext";
+import { Button } from "react-bootstrap";
 
 
 function EditarItem() {
     const { id } = useParams();
-    const { register, handleSubmit, formState: { errors }} = useForm();
+    const user = useContext(UsuarioContext);
+    const { register, handleSubmit, formState: { errors }, reset} = useForm();
+
+    const navigate = useNavigate();
+
+    function carregarItem() {
+        getItem(id).then((item) => {
+            if (item) {
+                reset(item);
+            } else {
+                navigate("/listas");
+            }
+        })
+    }
 
     function atualizarItem(data) {
-        updateItem(id, data).then((item) => {
-            toast.success
+        updateItem(id, data).then(() => {
+            toast.success("Item modificado com sucesso!");
+            navigate("/listas");
         })
+    }
+
+    useEffect(() => {
+        carregarItem();
+    }, []);
+
+    if (user === null) {
+        return <Navigate to="/login"/>
     }
 
     return (
@@ -25,28 +50,14 @@ function EditarItem() {
                     {errors.titulo && <small className="invalid">O título é inválido!</small>}
                 </div>
                 <div>
-                    <label htmlFor="descricao">Descrição</label>
-                    <textarea id="descricao" className="form-control" {...register("descricao", { required: true })}></textarea>
-                    {errors.descricao && <small className="invalid">A descrição é inválida!</small>}
-                </div>
-                <div>
-                    <label htmlFor="dataConclusao">Data</label>
-                    <input type="date" className="form-control" {...register("dataConclusao")} />
+                    <label htmlFor="item">Item</label>
+                    <textarea id="item" className="form-control" {...register("item", { required: true })}></textarea>
+                    {errors.descricao && <small className="invalid">O item é inválido!</small>}
                 </div>
                 <div className="form-check mt-1">
-                    <input type="checkbox" id="concluido" className="form-check-input" {...register("concluido")} />
-                    <label htmlFor="concluido">Concluído?</label>
-                </div>
-                <div>
-                    <label htmlFor="categoria" >Categoria</label>
-                    <select id="categoria" className="form-select" {...register("categoria", { required: true })}>
-                        <option value="Trabalho">Trabalho</option>
-                        <option value="Estudos">Estudos</option>
-                        <option value="Projetos">Projetos</option>
-                        <option value="Lazer">Lazer</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
+                    <input type="checkbox" id="comprado" className="form-check-input" {...register("comprado")} />
+                    <label htmlFor="comprado">Comprado?</label>
+                </div>      
                 <Button variant="dark" className="w-100 mt-1" type="submit" >Atualizar Tarefa</Button>
             </form>
         </main>
