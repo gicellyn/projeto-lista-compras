@@ -19,7 +19,7 @@ function Home() {
   }, [usuario]);
 
 // MUDAR PARA NULL O USUARIO DEPOIS DE TESTAR
-  if (usuario === true) { 
+  if (usuario === null) { 
     return <Navigate to="/login" />;
   }
 
