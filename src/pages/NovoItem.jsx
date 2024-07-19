@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 
 function NovoItem() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const usuario 
+    // const usuario 
 
     return (
         <main>
