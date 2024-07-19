@@ -1,32 +1,30 @@
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-// import toast from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
-// import { entrarGoogle, loginUsuario } from "../firebase/auth";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { entrarGoogle, loginUsuario } from "../firebase/auth";
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
-    // function entrar(data) {
-    //     //data é um objeto com os dados do form
-    //     loginUsuario(data.email, data.senha).then(() => {
-    //         toast.success("Bem-vindo(a)");
-    //         navigate("/tarefas");
-    //     });
-    // }
+    function login(data) {
+        loginUsuario(data.email, data.senha).then(() => {
+            toast.success("Bem-vindo(a)!");
+            navigate("/listas");
+        });
+    }
 
-    // function handleEntrarGoogle() {
-    //     entrarGoogle().then(() => {
-    //         toast.success("Bem-vindo(a)");
-    //         navigate("/tarefas");
-    //     })
-    // }
-
+    function handleEntrarGoogle() {
+        entrarGoogle().then(() => {
+            toast.success("Bem-vindo(a)!");
+            navigate("/listas");
+        })
+    }
 
     return (
         <main>
-            <form className="form-section" onSubmit={handleSubmit()}>
+            <form className="form-section" onSubmit={handleSubmit(login)}>
                 <h1 className="text-center">Login</h1>
                 <hr />
                 <div>
@@ -40,7 +38,7 @@ function Login() {
                     {errors.senha && <small className="text-danger">{errors.senha.message}</small>}
                 </div>
                 <Button variant="warning" className="mt-1 w-100" type="submit">Entrar</Button>
-                <Button variant="danger" className="mt-1 w-100" type="button">Entrar com Google</Button>
+                <Button onClick={handleEntrarGoogle} variant="danger" className="mt-1 w-100" type="button">Entrar com Google</Button>
             </form>
         </main>
     );
