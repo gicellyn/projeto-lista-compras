@@ -22,7 +22,6 @@ function Login() {
         })
     }
 
-
     return (
         <main>
             <form className="form-section" onSubmit={handleSubmit(login)}>
