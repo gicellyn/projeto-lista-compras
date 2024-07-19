@@ -10,6 +10,7 @@ import { UsuarioContext } from "./contexts/UsuarioContext";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/config";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           </Routes>
           <Rodape />
         </BrowserRouter>
+        <Toaster position="bottom-left"/>
       </UsuarioContext.Provider>
     </>
   );
