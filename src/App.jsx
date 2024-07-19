@@ -6,6 +6,7 @@ import Cadastro from "./pages/Cadastro";
 import Listas from "./pages/Listas";
 import NotFound from "./pages/NotFound";
 import Rodape from "./components/Rodape";
+import { UsuarioContext } from "./contexts/UsuarioContext";
 
 // BrowserRouter: componente essencial para conduzir o roteamento no navegador.
 // Route: indicamos a rota (path) e o elemento que será exibido na tela.
@@ -13,17 +14,19 @@ import Rodape from "./components/Rodape";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/listas" element={<Listas />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Rodape />
-      </BrowserRouter>
+      <UsuarioContext.Provider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/listas" element={<Listas />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Rodape />
+        </BrowserRouter>
+      </UsuarioContext.Provider>
     </>
   );
 }
