@@ -2,19 +2,22 @@ import { useEffect, useState, useContext } from "react";
 import { Container, Card, Button } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 import { UsuarioContext } from "../contexts/UsuarioContext";
-// import { getListasUsuario } from "../firebase/listas"; // Assumindo que a função foi criada
+import { listarListas } from "../firebase/listas"; // Assumindo que a função foi criada
 
 function Home() {
   const [listas, setListas] = useState([]);
   const usuario = useContext(UsuarioContext);
 
   useEffect(() => {
-    if (usuario) {
-      getListasUsuario(usuario.uid).then((resultados) => {
+    if (usuario && usuario.uid) {
+      listarListas(usuario.uid).then((resultados) => {
         setListas(resultados);
+      }).catch((error) => {
+        console.error("Erro ao listar listas: ", error);
       });
     }
-  }, []);
+  }, [usuario]);
+
 // MUDAR PARA NULL O USUARIO DEPOIS DE TESTAR
   if (usuario === true) { 
     return <Navigate to="/login" />;
