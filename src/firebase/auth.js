@@ -14,7 +14,7 @@ export async function entrarGoogle() {
 
 
 export async function loginUsuario(email, senha) {
-    await signInWithEmailAndPassword(auth, email, senha)
+    await signInWithEmailAndPassword(auth, email, senha);
 }
 
 export async function logout(){

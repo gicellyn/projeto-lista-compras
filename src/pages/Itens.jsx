@@ -1,5 +1,5 @@
-function Itens(params) {
+function Itens() {
     
 }
 
-export default
+export default Itens;
