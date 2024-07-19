@@ -42,7 +42,7 @@ function EditarItem() {
     return (
         <main>
             <form className="form-section" onSubmit={handleSubmit(atualizarItem)}>
-                <h1>Editar tarefa</h1>
+                <h1>Editar Item</h1>
                 <hr />
                 <div>
                     <label htmlFor="lista">Lista</label>
