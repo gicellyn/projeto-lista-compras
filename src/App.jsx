@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/config";
 import { Toaster } from "react-hot-toast";
+import NovoItem from "./pages/NovoItem";
+import EditarItem from "./pages/EditarItem";
 
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/listas" element={<Listas />} />
+            <Route path="/listas/adicionar" element={<NovoItem />}/>
+            <Route path="/listas/editar/:id" element={<EditarItem />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Rodape />
