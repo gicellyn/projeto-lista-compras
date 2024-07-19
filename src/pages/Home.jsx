@@ -21,7 +21,7 @@ function Home() {
   // }
 
   return (
-    <main className="mt-3" style={{ paddingTop: "16px", paddingBottom: "56px" }}>
+    <main style={{ paddingBottom: "56px" }}>
         <div className="container-fluid p-0">
             <img src="/public/banner-listaexpress.png" className="img-fluid" alt="Banner Lista Express" />
         </div>

@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import ListasSalvas from "./pages/ListasSalvas";
+import Listas from "./pages/Listas";
 import NotFound from "./pages/NotFound";
+import Rodape from "./components/Rodape";
 
 // BrowserRouter: componente essencial para conduzir o roteamento no navegador.
 // Route: indicamos a rota (path) e o elemento que será exibido na tela.
@@ -18,9 +19,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/listassalvas" element={<ListasSalvas />} />
+          <Route path="/listas" element={<Listas />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Rodape />
       </BrowserRouter>
     </>
   );
