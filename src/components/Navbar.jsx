@@ -32,6 +32,7 @@ function Menu() {
                            {user && <Link className="nav-link" to="/listas">Listas</Link>}
                             {!user && <Link className="nav-link" to="/login">Login</Link>}
                            {!user && <Link className="nav-link" to="/cadastro">Cadastro</Link>}
+                           {user && <span className="text-light nav-link">{user.displayName}</span>}
                            {user && <Button variant="danger" onClick={handleLogout}>Sair</Button>}
                         </Nav>
                     </Navbar.Collapse>
