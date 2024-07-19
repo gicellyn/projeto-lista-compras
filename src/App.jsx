@@ -7,14 +7,30 @@ import Listas from "./pages/Listas";
 import NotFound from "./pages/NotFound";
 import Rodape from "./components/Rodape";
 import { UsuarioContext } from "./contexts/UsuarioContext";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/config";
 
-// BrowserRouter: componente essencial para conduzir o roteamento no navegador.
-// Route: indicamos a rota (path) e o elemento que será exibido na tela.
 
 function App() {
+
+  const [userLogado, setUserLogado] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUserLogado(user);
+      setLoading(false)
+    });
+  });
+
+  if(loading){
+    return null;
+  }
+
   return (
     <>
-      <UsuarioContext.Provider>
+      <UsuarioContext.Provider value={userLogado}>
         <BrowserRouter>
           <Navbar />
           <Routes>
