@@ -25,7 +25,7 @@ function App() {
       setUserLogado(user);
       setLoading(false)
     });
-  });
+  }, []);
 
   if(loading){
     return null;

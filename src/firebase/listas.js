@@ -1,5 +1,3 @@
-// src/firebase/listas.js
-
 import { db } from "./config";
 import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 
@@ -10,6 +8,7 @@ export const listarListas = async (uid) => {
   listasSnapshot.forEach((doc) => {
     listas.push({ id: doc.id, ...doc.data() });
   });
+  console.log('Listas obtidas:', listas);
   return listas;
 };
 
