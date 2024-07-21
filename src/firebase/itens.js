@@ -7,7 +7,7 @@ export async function addItem(data){
     await addDoc(itensCol, data);
 }
 
-export async function getItemUsuario(idUsuario) {
+export async function getItemsUsuario(idUsuario) {
     const filtro = query(itensCol, where("idUsuario", "==", idUsuario));
     const snapshot = await getDocs(filtro);
     const itens = [];

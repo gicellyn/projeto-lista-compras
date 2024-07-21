@@ -18,7 +18,7 @@ function NovoItem() {
         addItem(data)
         .then(() => {
             toast.success("Item adicionado com sucesso!");
-            navigate("/listas");
+            navigate("/itens");
         }).catch(() => {
             toast.error("Um erro acontece ao adicionar tarefa!");
         });
@@ -33,24 +33,23 @@ function NovoItem() {
             <form className="form-section" onSubmit={handleSubmit(salvarItem)}>
                 <h1>Adicionar Item</h1>
                 <div>
-                    <label htmlFor="lista">Lista</label>
-                    <input type="text" id="lista" className="form-control" {...register("lista", { required: true, maxLength: 200 })} />
-                    {errors.titulo && <small className="text-danger">Campo inválido!</small>}
+                    <label htmlFor="lista">Titulo</label>
+                    <input type="text" id="titulo" className="form-control" {...register("titulo", { required: true, maxLength: 200 })} />
+                    {errors.titulo && <small className="text-danger">O título é inválido!</small>}
                 </div>
                 <div>
-                    <label htmlFor="item">Item</label>
-                    <textarea id="item" className="form-control" {...register("item", { required: true })}></textarea>
-                    {errors.item && <small className="text-danger">O item é inválido!</small>}
+                    <label htmlFor="descricao">Descrição</label>
+                    <textarea id="descricao" className="form-control" {...register("descricao")}></textarea>
                 </div>
                 <div>
                     <label htmlFor="quantidade">Quantidade</label>
-                    <input type="number" id="quantidade" className="form-control" {...register("lista", { required: true, maxLength: 200 })} />
+                    <input type="number" id="quantidade" className="form-control" {...register("quantidade", { required: true, maxLength: 200 })} />
                     {errors.quantidade && <small className="text-danger">Campo inválido!</small>}
                 </div>
                 <div className="form-check mt-1">
                     <input type="checkbox" id="comprado" className="form-check-input" {...register("comprado")} />
                     <label htmlFor="comprado">Comprado?</label>
-                </div> 
+                </div>   
                 <Button variant="dark" className="w-100 mt-1" type="submit" >Adicionar Item</Button>
             </form>
         </main>

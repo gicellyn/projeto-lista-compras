@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
-import Listas from "./pages/Listas";
+// import Listas from "./pages/Listas";
 import NotFound from "./pages/NotFound";
 import Rodape from "./components/Rodape";
 import { UsuarioContext } from "./contexts/UsuarioContext";
@@ -13,6 +13,7 @@ import { auth } from "./firebase/config";
 import { Toaster } from "react-hot-toast";
 import NovoItem from "./pages/NovoItem";
 import EditarItem from "./pages/EditarItem";
+import Itens from "./pages/Itens";
 
 
 function App() {
@@ -40,9 +41,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/listas" element={<Listas />} />
-            <Route path="/listas/adicionar" element={<NovoItem />}/>
-            <Route path="/listas/editar/:id" element={<EditarItem />}/>
+            {/* <Route path="/listas" element={<Listas />} /> */}
+            <Route path="/itens" element={<Itens />}/>
+            <Route path="/itens/adicionar" element={<NovoItem />}/>
+            <Route path="/itens/editar/:id" element={<EditarItem />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Rodape />

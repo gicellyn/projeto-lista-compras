@@ -19,7 +19,7 @@ function EditarItem() {
             if (item) {
                 reset(item);
             } else {
-                navigate("/listas");
+                navigate("/itens");
             }
         })
     }
@@ -27,7 +27,7 @@ function EditarItem() {
     function atualizarItem(data) {
         updateItem(id, data).then(() => {
             toast.success("Item modificado com sucesso!");
-            navigate("/listas");
+            navigate("/itens");
         })
     }
 
@@ -45,18 +45,17 @@ function EditarItem() {
                 <h1>Editar Item</h1>
                 <hr />
                 <div>
-                    <label htmlFor="lista">Lista</label>
-                    <input type="text" id="lista" className="form-control" {...register("lista", { required: true, maxLength: 200 })} />
-                    {errors.titulo && <small className="text-danger">Campo inválido!</small>}
+                    <label htmlFor="lista">Titulo</label>
+                    <input type="text" id="titulo" className="form-control" {...register("titulo", { required: true, maxLength: 200 })} />
+                    {errors.titulo && <small className="text-danger">O título é inválido!</small>}
                 </div>
                 <div>
-                    <label htmlFor="item">Item</label>
-                    <textarea id="item" className="form-control" {...register("item", { required: true })}></textarea>
-                    {errors.item && <small className="text-danger">O item é inválido!</small>}
+                    <label htmlFor="descricao">Descrição</label>
+                    <textarea id="descricao" className="form-control" {...register("descricao")}></textarea>
                 </div>
                 <div>
                     <label htmlFor="quantidade">Quantidade</label>
-                    <input type="number" id="quantidade" className="form-control" {...register("lista", { required: true, maxLength: 200 })} />
+                    <input type="number" id="quantidade" className="form-control" {...register("quantidade", { required: true, maxLength: 200 })} />
                     {errors.quantidade && <small className="text-danger">Campo inválido!</small>}
                 </div>
                 <div className="form-check mt-1">
