@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Container, ListGroup, Button, Badge } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { UsuarioContext } from "../contexts/UsuarioContext";
-import { obterItens, deletarItem } from "../firebase/listas";
+import { obterItens, deletarItem, obterNomeLista } from "../firebase/listas";
 import Loader from "../components/Loader";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
@@ -11,17 +11,33 @@ function Listas() {
     const usuario = useContext(UsuarioContext);
     const { listaId } = useParams();
     const [itens, setItens] = useState([]);
+    const [nomeLista, setNomeLista] = useState(""); // Novo estado para o nome da lista
     const [carregando, setCarregando] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (usuario) {
-            obterItens(usuario.uid, listaId).then((itens) => {
-                setItens(itens);
-                setCarregando(false);
-            }).catch(() => {
-                setCarregando(false);
-            });
+
+            const carregarDados = async () => {
+                try {
+                    const nome = await obterNomeLista(usuario.uid, listaId);
+                    setNomeLista(nome); // Define o nome da lista no estado
+                    const itens = await obterItens(usuario.uid, listaId);
+                    setItens(itens);
+                    setCarregando(false);
+                } catch (error) {
+                    console.error("Erro ao carregar dados:", error);
+                    setCarregando(false);
+                }
+            };
+
+            carregarDados();
+            // obterItens(usuario.uid, listaId).then((itens) => {
+            //     setItens(itens);
+            //     setCarregando(false);
+            // }).catch(() => {
+            //     setCarregando(false);
+            // });
         } else {
             navigate("/login");
         }
