@@ -11,7 +11,7 @@ function Listas() {
     const usuario = useContext(UsuarioContext);
     const { listaId } = useParams();
     const [itens, setItens] = useState([]);
-    const [nomeLista, setNomeLista] = useState(""); // Novo estado para o nome da lista
+    const [nomeLista, setNomeLista] = useState(""); 
     const [carregando, setCarregando] = useState(true);
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ function Listas() {
             const carregarDados = async () => {
                 try {
                     const nome = await obterNomeLista(usuario.uid, listaId);
-                    setNomeLista(nome); // Define o nome da lista no estado
+                    setNomeLista(nome); 
                     const itens = await obterItens(usuario.uid, listaId);
                     setItens(itens);
                     setCarregando(false);
@@ -32,12 +32,7 @@ function Listas() {
             };
 
             carregarDados();
-            // obterItens(usuario.uid, listaId).then((itens) => {
-            //     setItens(itens);
-            //     setCarregando(false);
-            // }).catch(() => {
-            //     setCarregando(false);
-            // });
+
         } else {
             navigate("/login");
         }
