@@ -1,7 +1,7 @@
 import { db } from "./config";
 import { collection, addDoc, query, where, getDocs, doc, deleteDoc, getDoc } from "firebase/firestore";
 
-// Função para adicionar lista
+
 export async function adicionarLista(uid, lista) {
   const docRef = await addDoc(collection(db, "listas"), {
     ...lista,
@@ -10,7 +10,7 @@ export async function adicionarLista(uid, lista) {
   return docRef.id;
 }
 
-// Função para obter listas
+
 export async function obterListas(uid) {
   const q = query(collection(db, "listas"), where("usuarioId", "==", uid));
   const querySnapshot = await getDocs(q);

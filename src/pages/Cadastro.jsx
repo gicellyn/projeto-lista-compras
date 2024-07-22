@@ -11,18 +11,18 @@ function Cadastro() {
 
     function cadastrar(data) {
         cadastrarUser(data.nome, data.email, data.senha)
-            .then(() => {
-                toast.success(`Bem-vindo(a)! ${data.nome}`);
-                navigate("/listas");
-            }).catch(() => {
-                toast.error("Ocorreu um erro!");
-            });
+        .then(() => {
+            toast.success(`Bem-vindo(a)! ${data.nome}`);
+            navigate("/");
+        }).catch(() => {
+            toast.error("Ocorreu um erro!");
+        });
     }
 
     function handleEntrarGoogle() {
         entrarGoogle().then(() => {
             toast.success("Bem-vindo(a)!");
-            navigate("/listas");
+            navigate("/");
         })
     }
 
