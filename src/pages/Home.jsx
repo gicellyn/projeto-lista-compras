@@ -33,7 +33,7 @@ function Home() {
       <Button onClick={() => navigate("/listas/criar")}>Criar Nova Lista</Button>
       <ListGroup>
         {listas.map((lista) => (
-          <ListGroup.Item key={lista.id} action onClick={() => navigate(`/listas/${lista.id}`)}>
+          <ListGroup.Item key={lista.id} action onClick={() => navigate(`/listas/${lista.id}/adicionar`)}>
             {lista.nome}
           </ListGroup.Item>
         ))}

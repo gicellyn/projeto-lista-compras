@@ -1,15 +1,15 @@
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { cadastrarUser, entrarGoogle } from "../firebase/auth";
+import { cadastrarUser, entrarGoogle, verificarEmail } from "../firebase/auth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 
 function Cadastro() {
-    const {register, handleSubmit, formState:{errors}} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    function cadastrar(data){
+    function cadastrar(data) {
         cadastrarUser(data.nome, data.email, data.senha)
         .then(() => {
             toast.success(`Bem-vindo(a)! ${data.nome}`);
@@ -26,19 +26,25 @@ function Cadastro() {
         })
     }
 
+    // function verificarUsuario() {
+    //     verificarEmail().then(() => {
+    //         toast.success("Email de verificação enviado!")
+    //     })
+    // }
+
     return (
         <main>
-           <form className="form-section" onSubmit={handleSubmit(cadastrar)}>
+            <form className="form-section" onSubmit={handleSubmit(cadastrar)}>
                 <h1 className="text-center">Cadastro</h1>
                 <hr />
                 <div>
                     <label htmlFor="nome">Nome</label>
-                    <input type="text" id="nome" className="form-control" {...register("nome", {required:true, maxLength:150})}/>
+                    <input type="text" id="nome" className="form-control" {...register("nome", { required: true, maxLength: 150 })} />
                     {errors.nome && <small className="text-danger">Nome inválido!</small>}
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" id="email" className="form-control" {...register("email", {required: true})}/>
+                    <input type="email" id="email" className="form-control" {...register("email", { required: true })} />
                     {errors.email && <small className="text-danger">Email inválido!</small>}
                 </div>
                 <div>
