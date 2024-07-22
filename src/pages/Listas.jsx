@@ -2,27 +2,19 @@ import { useEffect, useState, useContext } from "react";
 import { Container, ListGroup, Button } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { UsuarioContext } from "../contexts/UsuarioContext";
-import { obterItens, deletarItem, obterNomeLista } from "../firebase/listas"; 
+import { obterItens, deletarItem } from "../firebase/listas";
 import Loader from "../components/Loader";
 import { Navigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 function Listas() {
     const usuario = useContext(UsuarioContext);
     const { listaId } = useParams();
     const [itens, setItens] = useState([]);
     const [carregando, setCarregando] = useState(true);
-    const [nomeLista, setNomeLista] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
         if (usuario) {
-            obterNomeLista(usuario.uid, listaId).then((nome) => {
-                setNomeLista(nome);
-            }).catch((error) => {
-                toast.error("Erro ao obter nome da lista");
-            });
-
             obterItens(usuario.uid, listaId).then((itens) => {
                 setItens(itens);
                 setCarregando(false);
@@ -56,12 +48,14 @@ function Listas() {
 
     return (
         <Container>
-            <h1>Itens da Lista: {nomeLista}</h1> {/* Exiba o nome da lista aqui */}
+            <h1>Itens da Lista</h1>
             <Button onClick={() => navigate(`/listas/${listaId}/adicionar`)}>Novo Item</Button>
             <ListGroup>
                 {itens.map((item) => (
                     <ListGroup.Item key={item.id}>
-                        {item.nome}
+                        <h5>{item.titulo}</h5> 
+                        <p>{item.descricao}</p> 
+                        <p>Quantidade: {item.quantidade}</p>
                         <Button variant="danger" onClick={() => handleDeletar(item.id)}>Excluir</Button>
                         <Button onClick={() => navigate(`/listas/${listaId}/editar/${item.id}`)}>Editar</Button>
                     </ListGroup.Item>

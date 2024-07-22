@@ -6,37 +6,52 @@ import { useContext, useEffect } from "react";
 import { UsuarioContext } from "../contexts/UsuarioContext";
 import { Button } from "react-bootstrap";
 
-
 function EditarItem() {
-    const { id } = useParams();
+    const { listaId, itemId } = useParams();
     const user = useContext(UsuarioContext);
-    const { register, handleSubmit, formState: { errors }, reset} = useForm();
-
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const navigate = useNavigate();
 
-    function carregarItem() {
-        getItem(id).then((item) => {
-            if (item) {
-                reset(item);
-            } else {
-                navigate("/itens");
-            }
-        })
-    }
 
-    function atualizarItem(data) {
-        updateItem(id, data).then(() => {
-            toast.success("Item modificado com sucesso!");
-            navigate("/itens");
-        })
-    }
+    const carregarItem = async () => {
+        try {
+            if (user) {
+                const item = await getItem(user.uid, listaId, itemId); 
+                if (item) {
+                    reset(item); 
+                } else {
+                    navigate("/notfound"); 
+                }
+            } else {
+                navigate("/login"); 
+            }
+        } catch (error) {
+            console.error("Erro ao carregar item:", error);
+            navigate("/notfound"); 
+        }
+    };
+
+
+    const atualizarItem = async (data) => {
+        try {
+            if (user) {
+                await updateItem(user.uid, listaId, itemId, data);
+                toast.success("Item modificado com sucesso!");
+                navigate(`/listas/${listaId}`); 
+            } else {
+                navigate("/login");
+            }
+        } catch (error) {
+            toast.error("Erro ao atualizar item!");
+        }
+    };
 
     useEffect(() => {
-        carregarItem();
-    }, []);
+        carregarItem(); 
+    }, [user, itemId, listaId, navigate]);
 
-    if (user === null) {
-        return <Navigate to="/login"/>
+    if (!user) {
+        return <Navigate to="/login" />;
     }
 
     return (
@@ -45,7 +60,7 @@ function EditarItem() {
                 <h1>Editar Item</h1>
                 <hr />
                 <div>
-                    <label htmlFor="lista">Titulo</label>
+                    <label htmlFor="titulo">Título</label>
                     <input type="text" id="titulo" className="form-control" {...register("titulo", { required: true, maxLength: 200 })} />
                     {errors.titulo && <small className="text-danger">O título é inválido!</small>}
                 </div>
@@ -61,8 +76,8 @@ function EditarItem() {
                 <div className="form-check mt-1">
                     <input type="checkbox" id="comprado" className="form-check-input" {...register("comprado")} />
                     <label htmlFor="comprado">Comprado?</label>
-                </div>      
-                <Button variant="dark" className="w-100 mt-1" type="submit" >Atualizar Item</Button>
+                </div>
+                <Button variant="dark" className="w-100 mt-1" type="submit">Atualizar Item</Button>
             </form>
         </main>
     );

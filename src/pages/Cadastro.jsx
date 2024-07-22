@@ -13,7 +13,7 @@ function Cadastro() {
         cadastrarUser(data.nome, data.email, data.senha)
         .then(() => {
             toast.success(`Bem-vindo(a)! ${data.nome}`);
-            navigate("/listas");
+            navigate("/");
         }).catch(() => {
             toast.error("Ocorreu um erro!");
         });
@@ -22,7 +22,7 @@ function Cadastro() {
     function handleEntrarGoogle() {
         entrarGoogle().then(() => {
             toast.success("Bem-vindo(a)!");
-            navigate("/listas");
+            navigate("/");
         })
     }
 

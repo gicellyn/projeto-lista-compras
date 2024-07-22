@@ -47,8 +47,7 @@ function App() {
             <Route path="/listas/:listaId" element={<Listas />} />
             <Route path="/itens" element={<Itens />}/>
             <Route path="/listas/:listaId/adicionar" element={<NovoItem />} />
-            {/* <Route path="/listas/adicionar" element={<NovoItem />}/> */}
-            <Route path="/itens/editar/:id" element={<EditarItem />}/>
+            <Route path="/listas/:listaId/editar/:itemId" element={<EditarItem />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Rodape />
