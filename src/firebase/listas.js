@@ -1,43 +1,59 @@
 import { db } from "./config";
-import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs, doc, deleteDoc, getDoc } from "firebase/firestore";
 
-// Função para listar todas as listas de um usuário
-export const listarListas = async (uid) => {
-  const listasSnapshot = await getDocs(collection(db, `usuarios/${uid}/listas`));
+// Função para adicionar lista
+export async function adicionarLista(uid, lista) {
+  const docRef = await addDoc(collection(db, "listas"), {
+    ...lista,
+    usuarioId: uid,
+  });
+  return docRef.id;
+}
+
+// Função para obter listas
+export async function obterListas(uid) {
+  const q = query(collection(db, "listas"), where("usuarioId", "==", uid));
+  const querySnapshot = await getDocs(q);
   const listas = [];
-  listasSnapshot.forEach((doc) => {
+  querySnapshot.forEach((doc) => {
     listas.push({ id: doc.id, ...doc.data() });
   });
-  console.log('Listas obtidas:', listas);
   return listas;
+}
+
+export const obterNomeLista = async (userId, listaId) => {
+  try {
+      const listaDocRef = doc(db, "listas", listaId);
+      const listaDoc = await getDoc(listaDocRef);
+      return listaDoc.exists() ? listaDoc.data().nome : "Nome da Lista Não Encontrado";
+  } catch (error) {
+      console.error("Erro ao obter nome da lista:", error);
+      throw new Error("Erro ao obter nome da lista");
+  }
 };
 
-// Função para criar uma nova lista
-export const criarLista = async (uid, lista) => {
-  await addDoc(collection(db, `usuarios/${uid}/listas`), lista);
+export const obterItens = async (userId, listaId) => {
+  try {
+    const itensRef = collection(db, "usuarios", userId, "listas", listaId, "itens");
+    const q = query(itensRef);
+    const querySnapshot = await getDocs(q);
+    const itens = [];
+    querySnapshot.forEach((doc) => {
+      itens.push({ id: doc.id, ...doc.data() });
+    });
+    return itens;
+  } catch (error) {
+    console.error("Erro ao obter itens:", error);
+    throw new Error("Erro ao obter itens");
+  }
 };
 
-// Função para obter itens de uma lista
-export const obterItens = async (uid, listaId) => {
-  const itensSnapshot = await getDocs(collection(db, `usuarios/${uid}/listas/${listaId}/itens`));
-  const itens = [];
-  itensSnapshot.forEach((doc) => {
-    itens.push({ id: doc.id, ...doc.data() });
-  });
-  return itens;
-};
-
-// Função para criar um novo item em uma lista
-export const criarItem = async (uid, listaId, item) => {
-  await addDoc(collection(db, `usuarios/${uid}/listas/${listaId}/itens`), item);
-};
-
-// Função para deletar um item de uma lista
-export const deletarItem = async (uid, listaId, itemId) => {
-  await deleteDoc(doc(db, `usuarios/${uid}/listas/${listaId}/itens`, itemId));
-};
-
-// Função para editar um item de uma lista
-export const editarItem = async (uid, listaId, itemId, itemAtualizado) => {
-  await updateDoc(doc(db, `usuarios/${uid}/listas/${listaId}/itens`, itemId), itemAtualizado);
+export const deletarItem = async (userId, listaId, itemId) => {
+  try {
+    const itemRef = doc(db, "usuarios", userId, "listas", listaId, "itens", itemId);
+    await deleteDoc(itemRef);
+  } catch (error) {
+    console.error("Erro ao deletar item:", error);
+    throw new Error("Erro ao deletar item");
+  }
 };
