@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Container, ListGroup, Button } from "react-bootstrap";
 import { UsuarioContext } from "../contexts/UsuarioContext";
 import { obterListas } from "../firebase/listas";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import Loader from "../components/Loader";
 
 function Home() {
@@ -22,13 +22,17 @@ function Home() {
     }
   }, [usuario]);
 
+  if (usuario === null) {
+    return <Navigate to="/login" />
+  }
+
   if (carregando) {
     return <Loader />;
   }
 
   return (
     <>
-       <Container className="form-section mt-5 text-center">
+      <Container className="form-section mt-5 text-center">
         <h1>Minhas Listas</h1>
         <hr />
         <Button className="text-center" variant="warning mb-3" onClick={() => navigate("/listas/criar")}>Criar Nova Lista</Button>
