@@ -41,20 +41,20 @@ function Itens() {
 
     return (
         <main>
-            <Container className="mt-5">
+            <Container className="form-section mt-5 text-center">
                 <h1>Seus Itens</h1>
                 <hr />
                 <Link className="btn btn-dark" to="/itens/adicionar">Adicionar Item</Link>
                 {itens ? <section className="mt-2 ">{itens.map((item) => {
-                    return <Card key={item.id}>
-                        <Card.Body>
+                    return <Card className="border border-danger" key={item.id}>
+                        <Card.Body className="text-center ">
                             <Card.Title>{item.titulo}</Card.Title>
                             <Card.Text>{item.descricao}</Card.Text>
                             <Card.Text>Quantidade: {item.quantidade}</Card.Text>
                             <div className="mb-2" >{item.comprado ? <Badge
                                 bg="success">Comprado</Badge> : <Badge bg="warning">Não comprado</Badge>}
                             </div>
-                            <Button variant="outline-dark" onClick={() => {
+                            <Button variant="outline-warning" onClick={() => {
                                 navigate(`/itens/editar/${item.id}`)
                             }}><span className="material-symbols-outlined">
                                     edit
