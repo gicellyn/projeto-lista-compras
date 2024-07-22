@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import Listas from "./pages/Listas";
-import CriarListas from "./pages/CriarListas";
 import NotFound from "./pages/NotFound";
 import Rodape from "./components/Rodape";
 import { UsuarioContext } from "./contexts/UsuarioContext";
@@ -43,8 +42,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/listas" element={<Listas />} />
-            <Route path="/listas/criar" element={<CriarListas />} />
-            <Route path="/listas/:listaId" element={<Listas />} />
             <Route path="/itens" element={<Itens />}/>
             <Route path="/listas/:listaId/adicionar" element={<NovoItem />} />
             <Route path="/listas/:listaId/editar/:itemId" element={<EditarItem />} />

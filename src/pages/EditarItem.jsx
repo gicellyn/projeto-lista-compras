@@ -57,7 +57,7 @@ function EditarItem() {
     return (
         <main>
             <form className="form-section" onSubmit={handleSubmit(atualizarItem)}>
-                <h1>Editar Item</h1>
+                <h1 className="text-center">Editar Item</h1>
                 <hr />
                 <div>
                     <label htmlFor="titulo">Título</label>
@@ -76,8 +76,8 @@ function EditarItem() {
                 <div className="form-check mt-1">
                     <input type="checkbox" id="comprado" className="form-check-input" {...register("comprado")} />
                     <label htmlFor="comprado">Comprado?</label>
-                </div>
-                <Button variant="dark" className="w-100 mt-1" type="submit">Atualizar Item</Button>
+                </div>      
+                <Button variant="warning" className="w-100 mt-1" type="submit" >Atualizar Item</Button>
             </form>
         </main>
     );

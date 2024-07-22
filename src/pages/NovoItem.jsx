@@ -51,7 +51,7 @@ function NovoItem() {
                     <input type="checkbox" id="comprado" className="form-check-input" {...register("comprado")} />
                     <label htmlFor="comprado">Comprado?</label>
                 </div>   
-                <Button variant="dark" className="w-100 mt-1" type="submit">Adicionar Item</Button>
+                <Button variant="warning" className="w-100 mt-1" type="submit" >Adicionar Item</Button>
             </form>
         </main>
     );
