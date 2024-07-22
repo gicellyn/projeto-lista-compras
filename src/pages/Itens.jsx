@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Badge, Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { UsuarioContext } from "../contexts/UsuarioContext";
@@ -51,9 +51,6 @@ function Itens() {
                             <Card.Title>{item.titulo}</Card.Title>
                             <Card.Text>{item.descricao}</Card.Text>
                             <Card.Text>Quantidade: {item.quantidade}</Card.Text>
-                            <div className="mb-2" >{item.comprado ? <Badge
-                                bg="success">Comprado</Badge> : <Badge bg="warning">Não comprado</Badge>}
-                            </div>
                             <Button variant="outline-warning" onClick={() => {
                                 navigate(`/itens/editar/${item.id}`)
                             }}><span className="material-symbols-outlined">

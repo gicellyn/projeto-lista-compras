@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-import { Container, ListGroup, Button } from "react-bootstrap";
+import { Container, ListGroup, Button, Badge } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { UsuarioContext } from "../contexts/UsuarioContext";
 import { obterItens, deletarItem } from "../firebase/listas";
 import Loader from "../components/Loader";
+import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 
 function Listas() {
@@ -47,17 +48,25 @@ function Listas() {
     }
 
     return (
-        <Container>
+        <Container className="form-section mt-5 text-center">
             <h1>Itens da Lista</h1>
-            <Button onClick={() => navigate(`/listas/${listaId}/adicionar`)}>Novo Item</Button>
-            <ListGroup>
+            <hr />
+            <Button className="btn btn-dark mb-3" onClick={() => navigate(`/listas/${listaId}/adicionar`)}>Novo Item</Button>
+            <ListGroup >
                 {itens.map((item) => (
                     <ListGroup.Item key={item.id}>
-                        <h5>{item.titulo}</h5> 
-                        <p>{item.descricao}</p> 
+                        <h5>{item.titulo}</h5>
+                        <p>{item.descricao}</p>
+                        <div className="mb-2" >{item.comprado ? <Badge
+                            bg="success">Comprado</Badge> : <Badge bg="warning">Não comprado</Badge>}
+                        </div>
                         <p>Quantidade: {item.quantidade}</p>
-                        <Button variant="danger" onClick={() => handleDeletar(item.id)}>Excluir</Button>
-                        <Button onClick={() => navigate(`/listas/${listaId}/editar/${item.id}`)}>Editar</Button>
+                        <Button className="m-2" variant="outline-danger" onClick={() => handleDeletar(item.id)}><span className="material-symbols-outlined">
+                                delete
+                            </span></Button>
+                        <Button variant="outline-warning" onClick={() => navigate(`/listas/${listaId}/editar/${item.id}`)}><span className="material-symbols-outlined">
+                                    edit
+                                </span></Button>
                     </ListGroup.Item>
                 ))}
             </ListGroup>

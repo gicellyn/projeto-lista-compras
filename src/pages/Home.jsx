@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 
 function Home() {
-  const usuario  = useContext(UsuarioContext);
+  const usuario = useContext(UsuarioContext);
   const [listas, setListas] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const navigate = useNavigate();
@@ -27,18 +27,21 @@ function Home() {
   }
 
   return (
-    <Container>
-      <h1>HOME</h1>
-      <h1>Minhas Listas</h1>
-      <Button onClick={() => navigate("/listas/criar")}>Criar Nova Lista</Button>
-      <ListGroup>
-        {listas.map((lista) => (
-          <ListGroup.Item key={lista.id} action onClick={() => navigate(`/listas/${lista.id}/adicionar`)}>
-            {lista.nome}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </Container>
+    <>
+       <Container className="form-section mt-5 text-center">
+        <h1>Minhas Listas</h1>
+        <hr />
+        <Button className="text-center" variant="warning mb-3" onClick={() => navigate("/listas/criar")}>Criar Nova Lista</Button>
+        <ListGroup>
+          {listas.map((lista) => (
+            <ListGroup.Item key={lista.id} action onClick={() => navigate(`/listas/${lista.id}`)}>
+              {lista.nome}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </Container>
+    </>
+
   );
 }
 
