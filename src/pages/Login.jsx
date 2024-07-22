@@ -11,14 +11,14 @@ function Login() {
     function login(data) {
         loginUsuario(data.email, data.senha).then(() => {
             toast.success("Bem-vindo(a)!");
-            navigate("/listas");
+            navigate("/");
         });
     }
 
     function handleEntrarGoogle() {
         entrarGoogle().then(() => {
             toast.success("Bem-vindo(a)!");
-            navigate("/listas");
+            navigate("/");
         })
     }
 

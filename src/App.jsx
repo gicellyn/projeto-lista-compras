@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 import NovoItem from "./pages/NovoItem";
 import EditarItem from "./pages/EditarItem";
 import Itens from "./pages/Itens";
+import CriarListas from "./pages/CriarListas";
 
 
 function App() {
@@ -43,8 +44,10 @@ function App() {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/listas" element={<Listas />} />
             <Route path="/itens" element={<Itens />}/>
+            <Route path="/listas/criar" element={<CriarListas />} />
             <Route path="/listas/:listaId/adicionar" element={<NovoItem />} />
             {/* <Route path="/listas/adicionar" element={<NovoItem />}/> */}
+            
             <Route path="/itens/editar/:id" element={<EditarItem />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
